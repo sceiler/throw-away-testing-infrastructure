@@ -20,7 +20,7 @@ public class ExampleTest {
     private String url;
     private long startTime;
     private long endTime;
-    private int counter = 5;
+    private int counter = 50;
 
     @BeforeSuite
     public void beforeSuite() {
