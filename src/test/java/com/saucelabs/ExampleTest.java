@@ -4,7 +4,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.ElementNotInteractableException;
 import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.remote.CapabilityType;
-import org.openqa.selenium.remote.DriverCommand;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.Assert;
 import org.testng.ITestContext;
@@ -73,7 +72,7 @@ public class ExampleTest {
 
         RemoteWebDriver driver = new RemoteWebDriver(new URL(url), capabilities);
 
-        for (int i = 0; i <= 30; i++) {
+        for (int i = 0; i <= 50; i++) {
             driver.get("https://www.saucedemo.com");
             driver.findElement(By.id("user-name")).sendKeys("standard_user");
             driver.findElement(By.id("password")).sendKeys("secret_sauce");
@@ -95,7 +94,7 @@ public class ExampleTest {
 
         RemoteWebDriver driver = new RemoteWebDriver(new URL(url), capabilities);
 
-        for (int i = 0; i <= 30; i++) {
+        for (int i = 0; i <= 50; i++) {
             driver.get("https://www.saucedemo.com");
             driver.findElement(By.cssSelector("#user-name")).sendKeys("standard_user");
             driver.findElement(By.cssSelector("#password")).sendKeys("secret_sauce");
@@ -127,7 +126,7 @@ public class ExampleTest {
 
         driver.get("https://www.saucedemo.com");
 
-        for (int i = 0; i <= 30; i++) {
+        for (int i = 0; i <= 50; i++) {
             driver.findElement(By.cssSelector("#user-name")).sendKeys("standard_user");
             driver.findElement(By.cssSelector("#password")).sendKeys("secret_sauce");
             driver.findElement(By.cssSelector("#login-button")).click();
