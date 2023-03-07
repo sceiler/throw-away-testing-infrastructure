@@ -18,12 +18,18 @@ public class ExampleTest {
     private String browserName;
     private String browserVersion;
     private String platformName;
+    private String url;
 
     @BeforeTest
     public void beforeTest(ITestContext context) {
         browserName = context.getCurrentXmlTest().getParameter("browserName");
         browserVersion = context.getCurrentXmlTest().getParameter("browserVersion");
         platformName = context.getCurrentXmlTest().getParameter("platformName");
+        url = context.getCurrentXmlTest().getParameter("url");
+
+        if (context.getCurrentXmlTest().getParameter("runOnSauceLabs").equals("true")) {
+            url = "https://" + System.getenv("SAUCE_USERNAME") + ":" + System.getenv("SAUCE_ACCESS_KEY") + "@ondemand.saucelabs.com/wd/hub";
+        }
     }
 
     @Test
@@ -34,7 +40,7 @@ public class ExampleTest {
         capabilities.setCapability(CapabilityType.BROWSER_VERSION, browserVersion);
         capabilities.setCapability(CapabilityType.PLATFORM_NAME, platformName);
 
-        RemoteWebDriver driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), capabilities);
+        RemoteWebDriver driver = new RemoteWebDriver(new URL(url), capabilities);
 
         driver.get("https://www.saucedemo.com");
         Assert.assertEquals(driver.getTitle(), "Swag Labs");
@@ -50,7 +56,7 @@ public class ExampleTest {
         capabilities.setCapability(CapabilityType.BROWSER_VERSION, browserVersion);
         capabilities.setCapability(CapabilityType.PLATFORM_NAME, platformName);
 
-        RemoteWebDriver driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), capabilities);
+        RemoteWebDriver driver = new RemoteWebDriver(new URL(url), capabilities);
 
         driver.get("https://www.saucedemo.com");
         driver.findElement(By.id("user-name")).sendKeys("standard_user");
@@ -68,7 +74,7 @@ public class ExampleTest {
         capabilities.setCapability(CapabilityType.BROWSER_VERSION, browserVersion);
         capabilities.setCapability(CapabilityType.PLATFORM_NAME, platformName);
 
-        RemoteWebDriver driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), capabilities);
+        RemoteWebDriver driver = new RemoteWebDriver(new URL(url), capabilities);
 
         for (int i = 0; i <= 30; i++) {
             driver.get("https://www.saucedemo.com");
@@ -98,7 +104,7 @@ public class ExampleTest {
         capabilities.setCapability(CapabilityType.BROWSER_VERSION, browserVersion);
         capabilities.setCapability(CapabilityType.PLATFORM_NAME, platformName);
 
-        RemoteWebDriver driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), capabilities);
+        RemoteWebDriver driver = new RemoteWebDriver(new URL(url), capabilities);
 
         driver.get("https://www.saucedemo.com");
 
