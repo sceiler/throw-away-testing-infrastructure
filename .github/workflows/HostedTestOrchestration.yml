@@ -53,5 +53,5 @@ jobs:
       - name: Run Saucectl
         env:
           DOCKER_IMAGE: ${{ needs.docker_hub.outputs.tag }}
-        working-directory: java
+        #working-directory: ./
         run: saucectl run
