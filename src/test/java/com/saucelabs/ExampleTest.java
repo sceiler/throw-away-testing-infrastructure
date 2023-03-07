@@ -8,6 +8,8 @@ import org.openqa.selenium.remote.DriverCommand;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.Assert;
 import org.testng.ITestContext;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -19,6 +21,19 @@ public class ExampleTest {
     private String browserVersion;
     private String platformName;
     private String url;
+    private long startTime;
+    private long endTime;
+
+    @BeforeSuite
+    public void beforeSuite() {
+        startTime = System.currentTimeMillis();
+    }
+
+    @AfterSuite
+    public void afterSuite() {
+        endTime = System.currentTimeMillis();
+        System.out.println("Total time: " + (endTime - startTime) / 1000 + " seconds");
+    }
 
     @BeforeTest
     public void beforeTest(ITestContext context) {
@@ -28,7 +43,7 @@ public class ExampleTest {
         url = context.getCurrentXmlTest().getParameter("url");
 
         if (context.getCurrentXmlTest().getParameter("runOnSauceLabs").equals("true")) {
-            url = "https://" + System.getenv("SAUCE_USERNAME") + ":" + System.getenv("SAUCE_ACCESS_KEY") + "@ondemand.saucelabs.com/wd/hub";
+            url = "https://" + System.getenv("SAUCE_USERNAME") + ":" + System.getenv("SAUCE_ACCESS_KEY") + "@ondemand.eu-central-1.saucelabs.com/wd/hub";
         }
     }
 
@@ -58,10 +73,14 @@ public class ExampleTest {
 
         RemoteWebDriver driver = new RemoteWebDriver(new URL(url), capabilities);
 
-        driver.get("https://www.saucedemo.com");
-        driver.findElement(By.id("user-name")).sendKeys("standard_user");
-        driver.findElement(By.id("password")).sendKeys("secret_sauce");
-        driver.findElement(By.id("login-button")).click();
+        for (int i = 0; i <= 30; i++) {
+            driver.get("https://www.saucedemo.com");
+            driver.findElement(By.id("user-name")).sendKeys("standard_user");
+            driver.findElement(By.id("password")).sendKeys("secret_sauce");
+            driver.findElement(By.id("login-button")).click();
+
+            Assert.assertEquals(driver.getCurrentUrl(), "https://www.saucedemo.com/inventory.html");
+        }
 
         driver.quit();
     }
