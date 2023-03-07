@@ -53,6 +53,7 @@ jobs:
       - name: Run Saucectl
         env:
           DOCKER_IMAGE: ${{ needs.docker_hub.outputs.tag }}
+          BUILD_TAG: DevOps-Live-SL-Hosted-1.${{ github.run_number }}
         run: saucectl run
 
   sauce_grid:

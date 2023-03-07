@@ -12,6 +12,7 @@ import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
+import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -47,12 +48,19 @@ public class ExampleTest {
     }
 
     @Test
-    public void checkTitleTest() throws MalformedURLException {
+    public void checkTitleTest(Method method) throws MalformedURLException {
         MutableCapabilities capabilities = new MutableCapabilities();
 
         capabilities.setCapability(CapabilityType.BROWSER_NAME, browserName);
         capabilities.setCapability(CapabilityType.BROWSER_VERSION, browserVersion);
         capabilities.setCapability(CapabilityType.PLATFORM_NAME, platformName);
+
+        if (url.contains("sauce")) {
+            MutableCapabilities sauceCapabilities = new MutableCapabilities();
+            sauceCapabilities.setCapability("name", method.getName());
+            sauceCapabilities.setCapability("build", System.getenv("BUILD_TAG"));
+            capabilities.setCapability("sauce:options", sauceCapabilities);
+        }
 
         RemoteWebDriver driver = new RemoteWebDriver(new URL(url), capabilities);
 
@@ -63,12 +71,19 @@ public class ExampleTest {
     }
 
     @Test
-    public void loginTest() throws MalformedURLException {
+    public void loginTest(Method method) throws MalformedURLException {
         MutableCapabilities capabilities = new MutableCapabilities();
 
         capabilities.setCapability(CapabilityType.BROWSER_NAME, browserName);
         capabilities.setCapability(CapabilityType.BROWSER_VERSION, browserVersion);
         capabilities.setCapability(CapabilityType.PLATFORM_NAME, platformName);
+
+        if (url.contains("sauce")) {
+            MutableCapabilities sauceCapabilities = new MutableCapabilities();
+            sauceCapabilities.setCapability("name", method.getName());
+            sauceCapabilities.setCapability("build", System.getenv("BUILD_TAG"));
+            capabilities.setCapability("sauce:options", sauceCapabilities);
+        }
 
         RemoteWebDriver driver = new RemoteWebDriver(new URL(url), capabilities);
 
@@ -85,12 +100,19 @@ public class ExampleTest {
     }
     
     @Test
-    public void checkoutTest() throws MalformedURLException {
+    public void checkoutTest(Method method) throws MalformedURLException {
         MutableCapabilities capabilities = new MutableCapabilities();
 
         capabilities.setCapability(CapabilityType.BROWSER_NAME, browserName);
         capabilities.setCapability(CapabilityType.BROWSER_VERSION, browserVersion);
         capabilities.setCapability(CapabilityType.PLATFORM_NAME, platformName);
+
+        if (url.contains("sauce")) {
+            MutableCapabilities sauceCapabilities = new MutableCapabilities();
+            sauceCapabilities.setCapability("name", method.getName());
+            sauceCapabilities.setCapability("build", System.getenv("BUILD_TAG"));
+            capabilities.setCapability("sauce:options", sauceCapabilities);
+        }
 
         RemoteWebDriver driver = new RemoteWebDriver(new URL(url), capabilities);
 
@@ -115,12 +137,19 @@ public class ExampleTest {
     }
 
     @Test
-    public void loginLogoutTest() throws MalformedURLException {
+    public void loginLogoutTest(Method method) throws MalformedURLException {
         MutableCapabilities capabilities = new MutableCapabilities();
 
         capabilities.setCapability(CapabilityType.BROWSER_NAME, browserName);
         capabilities.setCapability(CapabilityType.BROWSER_VERSION, browserVersion);
         capabilities.setCapability(CapabilityType.PLATFORM_NAME, platformName);
+
+        if (url.contains("sauce")) {
+            MutableCapabilities sauceCapabilities = new MutableCapabilities();
+            sauceCapabilities.setCapability("name", method.getName());
+            sauceCapabilities.setCapability("build", System.getenv("BUILD_TAG"));
+            capabilities.setCapability("sauce:options", sauceCapabilities);
+        }
 
         RemoteWebDriver driver = new RemoteWebDriver(new URL(url), capabilities);
 
