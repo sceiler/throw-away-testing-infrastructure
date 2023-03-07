@@ -105,7 +105,7 @@ public class ExampleTest {
             driver.findElement(By.cssSelector("#password")).sendKeys("secret_sauce");
             driver.findElement(By.cssSelector("#login-button")).click();
             driver.findElement(By.cssSelector("#react-burger-menu-btn")).click();
-            driver.findElement(By.cssSelector("#logout_sidebar_link")).click();
+            driver.findElement(By.id("logout_sidebar_link")).click();
 
             Assert.assertTrue(driver.findElement(By.cssSelector("#login-button")).isDisplayed());
         }
