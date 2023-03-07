@@ -8,13 +8,6 @@ on:
   schedule:
     - cron: '0 */8 * * *'
 
-permissions:
-  contents: write
-
-env:
-  SAUCE_USERNAME: ${{secrets.SAUCE_USERNAME}}
-  SAUCE_ACCESS_KEY: ${{secrets.SAUCE_ACCESS_KEY}}
-
 jobs:
 
   run:
@@ -39,4 +32,4 @@ jobs:
 
       - name: Build with Maven
         id: RunTests
-        run: mvn clean test
+        run: mvn clean test -Dsurefire.suiteXmlFiles=./src/test/resources/tests.xml -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn -B -V
