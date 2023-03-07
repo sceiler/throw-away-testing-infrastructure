@@ -4,8 +4,7 @@ sauce:
 region: us-west-1
 suites:
   - name: Hosted Test Orchestration Demo
-    #image: $DOCKER_IMAGE
-    image: sceiler/photon-demo-java:sha-11e9086
+    image: $DOCKER_IMAGE
     entrypoint: "mvn clean test -Dsurefire.suiteXmlFiles=./src/test/resources/remote.xml"
     imagePullAuth:
       user: $DOCKER_USERNAME
