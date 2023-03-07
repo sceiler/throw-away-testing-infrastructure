@@ -70,20 +70,22 @@ public class ExampleTest {
 
         RemoteWebDriver driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), capabilities);
 
-        driver.get("https://www.saucedemo.com");
-        driver.findElement(By.cssSelector("#user-name")).sendKeys("standard_user");
-        driver.findElement(By.cssSelector("#password")).sendKeys("secret_sauce");
-        driver.findElement(By.cssSelector("#login-button")).click();
-        driver.findElement(By.cssSelector("#add-to-cart-sauce-labs-backpack")).click();
-        driver.findElement(By.cssSelector(".shopping_cart_badge")).click();
-        driver.findElement(By.cssSelector("#checkout")).click();
-        driver.findElement(By.cssSelector("#first-name")).sendKeys("Sauce");
-        driver.findElement(By.cssSelector("#last-name")).sendKeys("Bot");
-        driver.findElement(By.cssSelector("#postal-code")).sendKeys("12345");
-        driver.findElement(By.cssSelector("#continue")).click();
-        driver.findElement(By.id("finish")).click();
+        for (int i = 0; i <= 30; i++) {
+            driver.get("https://www.saucedemo.com");
+            driver.findElement(By.cssSelector("#user-name")).sendKeys("standard_user");
+            driver.findElement(By.cssSelector("#password")).sendKeys("secret_sauce");
+            driver.findElement(By.cssSelector("#login-button")).click();
+            driver.findElement(By.cssSelector("#add-to-cart-sauce-labs-backpack")).click();
+            driver.findElement(By.cssSelector(".shopping_cart_badge")).click();
+            driver.findElement(By.cssSelector("#checkout")).click();
+            driver.findElement(By.cssSelector("#first-name")).sendKeys("Sauce");
+            driver.findElement(By.cssSelector("#last-name")).sendKeys("Bot");
+            driver.findElement(By.cssSelector("#postal-code")).sendKeys("12345");
+            driver.findElement(By.cssSelector("#continue")).click();
+            driver.findElement(By.id("finish")).click();
 
-        Assert.assertTrue(driver.findElement(By.className("pony_express")).isDisplayed());
+            Assert.assertTrue(driver.findElement(By.className("pony_express")).isDisplayed());
+        }
 
         driver.quit();
     }
@@ -101,7 +103,6 @@ public class ExampleTest {
         driver.get("https://www.saucedemo.com");
 
         for (int i = 0; i <= 30; i++) {
-            System.out.println("Iteration: " + i);
             driver.findElement(By.cssSelector("#user-name")).sendKeys("standard_user");
             driver.findElement(By.cssSelector("#password")).sendKeys("secret_sauce");
             driver.findElement(By.cssSelector("#login-button")).click();
