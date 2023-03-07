@@ -16,6 +16,7 @@
         <parameter name="browserName" value="chrome"/>
         <parameter name="browserVersion" value="110"/>
         <parameter name="platformName" value="Windows 11"/>
+        <parameter name="runOnSauceLabs" value="true"/>
 
         <packages>
             <package name="com.saucelabs"/>

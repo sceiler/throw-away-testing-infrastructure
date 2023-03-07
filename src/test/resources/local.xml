@@ -17,6 +17,8 @@
         <parameter name="browserName" value="chrome"/>
         <parameter name="browserVersion" value="110.0"/>
         <parameter name="platformName" value="LINUX"/>
+        <parameter name="url" value="http://localhost:4444/wd/hub"/>
+        <parameter name="runOnSauceLabs" value="false"/>
 
         <packages>
             <package name="com.saucelabs"/>
