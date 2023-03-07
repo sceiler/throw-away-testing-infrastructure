@@ -1,7 +1,7 @@
 version: "3"
 services:
   chrome:
-    image: selenium/node-chrome:4.8.1-20230221
+    image: selenium/node-chrome:110.0
     shm_size: 2gb
     depends_on:
       - selenium-hub
@@ -14,7 +14,7 @@ services:
       - SE_NODE_OVERRIDE_MAX_SESSIONS=true
 
   firefox:
-    image: selenium/node-firefox:4.8.1-20230221
+    image: selenium/node-firefox:110.0
     shm_size: 2gb
     depends_on:
       - selenium-hub
