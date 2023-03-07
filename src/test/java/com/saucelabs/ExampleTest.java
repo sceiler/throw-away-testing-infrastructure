@@ -1,6 +1,7 @@
 package com.saucelabs;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.ElementNotInteractableException;
 import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DriverCommand;
@@ -105,7 +106,12 @@ public class ExampleTest {
             driver.findElement(By.cssSelector("#password")).sendKeys("secret_sauce");
             driver.findElement(By.cssSelector("#login-button")).click();
             driver.findElement(By.cssSelector("#react-burger-menu-btn")).click();
-            driver.findElement(By.id("logout_sidebar_link")).click();
+
+            try {
+                driver.findElement(By.id("logout_sidebar_link")).click();
+            } catch (ElementNotInteractableException e) {
+                driver.executeScript("arguments[0].click();", driver.findElement(By.id("logout_sidebar_link")));
+            }
 
             Assert.assertTrue(driver.findElement(By.cssSelector("#login-button")).isDisplayed());
         }
