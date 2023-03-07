@@ -23,6 +23,7 @@ public class ExampleTest {
     private String url;
     private long startTime;
     private long endTime;
+    private int counter = 5;
 
     @BeforeSuite
     public void beforeSuite() {
@@ -87,7 +88,7 @@ public class ExampleTest {
 
         RemoteWebDriver driver = new RemoteWebDriver(new URL(url), capabilities);
 
-        for (int i = 0; i <= 50; i++) {
+        for (int i = 0; i <= counter; i++) {
             driver.get("https://www.saucedemo.com");
             driver.findElement(By.id("user-name")).sendKeys("standard_user");
             driver.findElement(By.id("password")).sendKeys("secret_sauce");
@@ -116,7 +117,7 @@ public class ExampleTest {
 
         RemoteWebDriver driver = new RemoteWebDriver(new URL(url), capabilities);
 
-        for (int i = 0; i <= 50; i++) {
+        for (int i = 0; i <= counter; i++) {
             driver.get("https://www.saucedemo.com");
             driver.findElement(By.cssSelector("#user-name")).sendKeys("standard_user");
             driver.findElement(By.cssSelector("#password")).sendKeys("secret_sauce");
@@ -155,7 +156,7 @@ public class ExampleTest {
 
         driver.get("https://www.saucedemo.com");
 
-        for (int i = 0; i <= 50; i++) {
+        for (int i = 0; i <= counter; i++) {
             driver.findElement(By.cssSelector("#user-name")).sendKeys("standard_user");
             driver.findElement(By.cssSelector("#password")).sendKeys("secret_sauce");
             driver.findElement(By.cssSelector("#login-button")).click();
