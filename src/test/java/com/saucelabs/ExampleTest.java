@@ -41,7 +41,7 @@ public class ExampleTest {
         url = context.getCurrentXmlTest().getParameter("url");
 
         if (context.getCurrentXmlTest().getParameter("runOnSauceLabs").equals("true")) {
-            url = "https://" + System.getenv("SAUCE_USERNAME") + ":" + System.getenv("SAUCE_ACCESS_KEY") + "@ondemand.eu-central-1.saucelabs.com/wd/hub";
+            url = "https://" + System.getenv("SAUCE_USERNAME") + ":" + System.getenv("SAUCE_ACCESS_KEY") + "@ondemand.saucelabs.com/wd/hub";
         }
     }
 
