@@ -14,13 +14,12 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class ExampleTest {
+    private final int counter = 50;
     private String browserName;
     private String browserVersion;
     private String platformName;
     private String url;
     private long startTime;
-    private long endTime;
-    private int counter = 50;
 
     @BeforeSuite
     public void beforeSuite() {
@@ -29,7 +28,7 @@ public class ExampleTest {
 
     @AfterSuite
     public void afterSuite() {
-        endTime = System.currentTimeMillis();
+        long endTime = System.currentTimeMillis();
         System.out.println("Total time: " + (endTime - startTime) / 1000 + " seconds");
     }
 
@@ -54,10 +53,7 @@ public class ExampleTest {
         capabilities.setCapability(CapabilityType.PLATFORM_NAME, platformName);
 
         if (url.contains("sauce")) {
-            MutableCapabilities sauceCapabilities = new MutableCapabilities();
-            sauceCapabilities.setCapability("name", method.getName());
-            sauceCapabilities.setCapability("build", System.getenv("BUILD_TAG"));
-            capabilities.setCapability("sauce:options", sauceCapabilities);
+            capabilities.setCapability("sauce:options", setSauceCapabilities(method));
         }
 
         RemoteWebDriver driver = new RemoteWebDriver(new URL(url), capabilities);
@@ -77,10 +73,7 @@ public class ExampleTest {
         capabilities.setCapability(CapabilityType.PLATFORM_NAME, platformName);
 
         if (url.contains("sauce")) {
-            MutableCapabilities sauceCapabilities = new MutableCapabilities();
-            sauceCapabilities.setCapability("name", method.getName());
-            sauceCapabilities.setCapability("build", System.getenv("BUILD_TAG"));
-            capabilities.setCapability("sauce:options", sauceCapabilities);
+            capabilities.setCapability("sauce:options", setSauceCapabilities(method));
         }
 
         RemoteWebDriver driver = new RemoteWebDriver(new URL(url), capabilities);
@@ -96,7 +89,14 @@ public class ExampleTest {
 
         driver.quit();
     }
-    
+
+    private MutableCapabilities setSauceCapabilities(Method method) {
+        MutableCapabilities sauceCapabilities = new MutableCapabilities();
+        sauceCapabilities.setCapability("name", method.getName());
+        sauceCapabilities.setCapability("build", System.getenv("BUILD_TAG"));
+        return sauceCapabilities;
+    }
+
     @Test
     public void checkoutTest(Method method) throws MalformedURLException {
         MutableCapabilities capabilities = new MutableCapabilities();
@@ -106,10 +106,7 @@ public class ExampleTest {
         capabilities.setCapability(CapabilityType.PLATFORM_NAME, platformName);
 
         if (url.contains("sauce")) {
-            MutableCapabilities sauceCapabilities = new MutableCapabilities();
-            sauceCapabilities.setCapability("name", method.getName());
-            sauceCapabilities.setCapability("build", System.getenv("BUILD_TAG"));
-            capabilities.setCapability("sauce:options", sauceCapabilities);
+            capabilities.setCapability("sauce:options", setSauceCapabilities(method));
         }
 
         RemoteWebDriver driver = new RemoteWebDriver(new URL(url), capabilities);
@@ -143,10 +140,7 @@ public class ExampleTest {
         capabilities.setCapability(CapabilityType.PLATFORM_NAME, platformName);
 
         if (url.contains("sauce")) {
-            MutableCapabilities sauceCapabilities = new MutableCapabilities();
-            sauceCapabilities.setCapability("name", method.getName());
-            sauceCapabilities.setCapability("build", System.getenv("BUILD_TAG"));
-            capabilities.setCapability("sauce:options", sauceCapabilities);
+            capabilities.setCapability("sauce:options", setSauceCapabilities(method));
         }
 
         RemoteWebDriver driver = new RemoteWebDriver(new URL(url), capabilities);
