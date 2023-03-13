@@ -55,7 +55,7 @@ jobs:
           DOCKER_IMAGE: ${{ needs.docker_hub.outputs.tag }}
           BUILD_TAG: EU-Hosted-1.${{ github.run_number }}
           REGION: eu-central-1
-        run: saucectl run
+        run: saucectl run -c .sauce/config_eu.yml
 
   orchestrated_us:
     name: Run Tests Hosted by Sauce Labs US

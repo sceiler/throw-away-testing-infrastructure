@@ -33,3 +33,5 @@ jobs:
       - name: Build with Maven
         id: RunTests
         run: mvn clean test -Dsurefire.suiteXmlFiles=./src/test/resources/remote.xml -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn -B -V
+        env:
+          REGION: eu-central-1
