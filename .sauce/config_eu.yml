@@ -1,7 +1,7 @@
 apiVersion: v1alpha
 kind: imagerunner
 sauce:
-region: us-west-1
+region: eu-central-1
 suites:
   - name: Hosted Test Orchestration Demo
     image: $DOCKER_IMAGE
@@ -11,4 +11,4 @@ suites:
       token: $DOCKER_PASSWORD
     env:
       BUILD_TAG: $BUILD_TAG
-      REGION: us-west-1
+      REGION: eu-central-1

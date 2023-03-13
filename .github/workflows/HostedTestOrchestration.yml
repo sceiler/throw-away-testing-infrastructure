@@ -42,8 +42,8 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
 
-  orchestrated:
-    name: Run Tests Hosted by Sauce Labs
+  orchestrated_eu:
+    name: Run Tests Hosted by Sauce Labs EU
     needs: docker_hub
     runs-on: ubuntu-latest
     container: saucelabs/saucectl:latest
@@ -53,7 +53,23 @@ jobs:
       - name: Run Saucectl
         env:
           DOCKER_IMAGE: ${{ needs.docker_hub.outputs.tag }}
-          BUILD_TAG: DevOps-Live-SL-Hosted-1.${{ github.run_number }}
+          BUILD_TAG: EU-Hosted-1.${{ github.run_number }}
+          REGION: eu-central-1
+        run: saucectl run
+
+  orchestrated_us:
+    name: Run Tests Hosted by Sauce Labs US
+    needs: docker_hub
+    runs-on: ubuntu-latest
+    container: saucelabs/saucectl:latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+      - name: Run Saucectl
+        env:
+          DOCKER_IMAGE: ${{ needs.docker_hub.outputs.tag }}
+          BUILD_TAG: US-Hosted-1.${{ github.run_number }}
+          REGION: us-west-1
         run: saucectl run
 
   sauce_grid:
