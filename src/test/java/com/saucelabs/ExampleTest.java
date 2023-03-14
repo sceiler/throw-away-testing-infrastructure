@@ -40,9 +40,13 @@ public class ExampleTest {
         url = context.getCurrentXmlTest().getParameter("url");
 
         if (context.getCurrentXmlTest().getParameter("runOnSauceLabs").equals("true")) {
-            if (System.getenv("REGION").equalsIgnoreCase(("us-west-1"))) {
-                url = "https://" + System.getenv("SAUCE_USERNAME") + ":" + System.getenv("SAUCE_ACCESS_KEY") + "@ondemand.saucelabs.com/wd/hub";
-            } else if (System.getenv("REGION").equalsIgnoreCase(("eu-central-1"))) {
+            try {
+                if (System.getenv("REGION").equalsIgnoreCase(("us-west-1"))) {
+                    url = "https://" + System.getenv("SAUCE_USERNAME") + ":" + System.getenv("SAUCE_ACCESS_KEY") + "@ondemand.saucelabs.com/wd/hub";
+                } else if (System.getenv("REGION").equalsIgnoreCase(("eu-central-1"))) {
+                    url = "https://" + System.getenv("SAUCE_USERNAME") + ":" + System.getenv("SAUCE_ACCESS_KEY") + "@ondemand.eu-central-1.saucelabs.com/wd/hub";
+                }
+            } catch (NullPointerException e) {
                 url = "https://" + System.getenv("SAUCE_USERNAME") + ":" + System.getenv("SAUCE_ACCESS_KEY") + "@ondemand.eu-central-1.saucelabs.com/wd/hub";
             }
         }
